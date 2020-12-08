@@ -1,0 +1,23 @@
+#bar_chart .cursor-crosshair {
+  cursor: pointer !important;
+}
+
+#line_chart .cursor-crosshair {
+  cursor: pointer !important;
+}
+
+#county_cases_line_chart .cursor-crosshair {
+  cursor: pointer !important;
+}
+
+#total_sample_line_chart .cursor-crosshair {
+  cursor: pointer !important;
+}
+
+#station_select .shiny-input-container {
+  margin-bottom: 0 !important;
+}
+
+#station_select .selectize-control {
+  margin-bottom: 0 !important;
+}

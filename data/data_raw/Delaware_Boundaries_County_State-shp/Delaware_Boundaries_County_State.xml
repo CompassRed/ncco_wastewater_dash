@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8"?><metadata>
+    <idinfo>
+        <citation>
+            <citeinfo>
+                <origin/>
+                <pubdate>20040101</pubdate>
+                <title>State/County Boundaries</title>
+                <geoform>vector digital data</geoform>
+            </citeinfo>
+        </citation>
+        <descript>
+            <abstract>This geospatial data file comprises the bounding lines relating to the political boundary delineation for the State of DelawareNew Castle, Kent, and Sussex Counties have come to an agreement on where approximately the county boundaries should fall. The Kent and Sussex County Boundary has momuments which set the boundary line. These momuments have been GPS.</abstract>
+            <purpose>This dataset was created by merging three different data sets together. Two of the data sets were from the U.S. Geological Survey and the thrid from Kent County, DE. The representation of the Delaware State boundary line and the coastal shore line were created in support of USGS's The National Map project and the Delaware's Spatial Data Framework/DataMIL project. The County lines were created by Kent County, DE to show where approximately the Kent Boundary lines up with New Castle and Sussex Counties.</purpose>
+        </descript>
+        <status>
+            <progress>Complete</progress>
+            <update>None planned</update>
+        </status>
+        <spdom>
+            <bounding>
+                <westbc>-75.789988</westbc>
+                <eastbc>-74.976547</eastbc>
+                <northbc>39.839605</northbc>
+                <southbc>38.450576</southbc>
+            </bounding>
+        </spdom>
+        <keywords>
+            <theme>
+                <themekt>None</themekt>
+                <themekey>political</themekey>
+                <themekey>boundary lines</themekey>
+                <themekey>boundary line</themekey>
+                <themekey>boundaries</themekey>
+                <themekey>political line</themekey>
+                <themekey>boundary</themekey>
+                <themekey>state boundary</themekey>
+            </theme>
+            <theme>
+                <themekt>ISO 19115 Topic Categories</themekt>
+                <themekey>boundaries</themekey>
+            </theme>
+            <place>
+                <placekt>U.S. Department of Commerce/National Institute of Standards and Technology, 1995, Countries, Dependencies, Areas of Special Sovereignty, and Their Principal Administrative Divisions (Federal Information Processing Standard (FIPS) 10-4), Washington, D.C.</placekt>
+                <placekey>United States</placekey>
+                <placekey>U.S.</placekey>
+            </place>
+            <place>
+                <placekt>U.S. Department of Commerce/National Institute of Standards and Technology, 1987, Codes for the Identification of the States, the District of Columbia and the Outlying Areas of the United States, and Associated Areas (Federal Information Processing Standard (FIPS) 5-2), Washington, D.C.</placekt>
+                <placekey>Pennsylvania</placekey>
+                <placekey>Maryland</placekey>
+                <placekey>Delaware</placekey>
+                <placekey>New Jersey</placekey>
+            </place>
+        </keywords>
+        <accconst>use constraints: None. Acknowledgement of the U.S. Geological Survey would be appreciated in products derived from these data.</accconst>
+        <useconst>See access and use constraints information.</useconst>
+        <ptcontac>
+            <cntinfo>
+                <cntorgp>
+                    <cntorg>Delaware Division of Technology and Information - FirstMap</cntorg>
+                </cntorgp>
+                <cntaddr>
+                    <addrtype>mailing and physical</addrtype>
+                    <address>801 Silver Lake Blvd</address>
+                    <city>Dover</city>
+                    <state>DE</state>
+                    <postal>19904</postal>
+                    <country>US</country>
+                </cntaddr>
+                <cntvoice>302-739-9560</cntvoice>
+                <cntemail>DTI_GIS@state.de.us</cntemail>
+            </cntinfo>
+        </ptcontac>
+        <native>Version 6.2 (Build 9200) ; Esri ArcGIS 10.5.1.7333</native>
+    </idinfo>
+    <dataqual>
+        <posacc>
+            <horizpa>
+                <qhorizpa>
+                    <horizpae>No formal horizontal positional accuracy testing has been performed to qualify or validate these data. The horizontal positional accuracy of the source data used to generate this boundary varies greatly. Accordingly, the placement of boundary lines on land are generally more horizontally accurate and reliable than the position of boundary lines as they exists on large water bodies such as the Delaware Bay and the Atlantic Ocean. These boundary lines are positoned so they are coincident with known boundary monuments and boundary points. Boundary monument positions were based upon NGS coordinates as documented in several joint agreements between the States of Delaware, New Jersey, Maryland and Pennsylvania. These monument positions were stated to be within first and second order horizontal network accuracy. Not used were the computed boundary points and boundary reference monument positions from "Exhibit C" of the Joint Agreement between Delaware and New Jersey along the 1934 mean low water line (20010829). Boundary, boundary monument, and boundary reference monument positions were calculated and included in this file along the mean low water line of the Delaware - New Jersey boundary. These values were calculated from descriptions in the 1934/1935 U.S. Supreme Court Decree.</horizpae>
+                </qhorizpa>
+            </horizpa>
+        </posacc>
+        <lineage>
+            <srcinfo>
+                <srccite>
+                    <citeinfo>
+                        <pubdate>19341101</pubdate>
+                        <title>The Circular Boundary of Delaware</title>
+                    </citeinfo>
+                </srccite>
+                <typesrc>None</typesrc>
+                <srccitea>The Circular Boundary of Delaware</srccitea>
+                <srccontr>A description and history of the circular portion of the Delaware boundary. An understanding of how the circular portions of the boundary were delineated was necessary for the creation of the computer programs (AMLs) which were used to crete the digital representation of the boundary.</srccontr>
+            </srcinfo>
+            <srcinfo>
+                <srccite>
+                    <citeinfo>
+                        <title>Joint Agreements between the States of Delaware, New Jersey, Pennsylvania, and Maryland</title>
+                    </citeinfo>
+                </srccite>
+                <typesrc>None</typesrc>
+                <srccitea>Joint Agreements between the States of Delaware, New Jersey, Pennsylvania, and Maryland</srccitea>
+                <srccontr>References describing information pertinent to the Delaware boundary. Of critical importance are the NAD83 (1991) point positions for boundary and reference monuments for the Delaware boundary.</srccontr>
+            </srcinfo>
+            <srcinfo>
+                <srccite>
+                    <citeinfo>
+                        <pubdate>19930101</pubdate>
+                        <title>USGS 7.5 minute DLGs</title>
+                    </citeinfo>
+                </srccite>
+                <srcscale>24</srcscale>
+                <typesrc>None</typesrc>
+                <srccitea>USGS 7.5 minute DLGs</srccitea>
+                <srccontr>A digital line file containing the placement of the mean low water line boundary between Delaware and New Jersey.</srccontr>
+            </srcinfo>
+            <srcinfo>
+                <srccite>
+                    <citeinfo>
+                        <pubdate>19350603</pubdate>
+                        <title>U.S. Supreme Court (Decree), State of New Jersey v. State of Delaware, No. 11, 295 U.S. 694 (1934/1935)</title>
+                    </citeinfo>
+                </srccite>
+                <typesrc>None</typesrc>
+                <srccitea>U.S. Supreme Court (Decree), State of New Jersey v. State of Delaware, No. 11, 295 U.S. 694 (1934/1935)</srccitea>
+                <srccontr>A narrative describing the boundary between Delaware and New Jersey as decided by the U.S. Supreme Court. Boundary point, boundary monument, and boundary reference monument positions were calculated along the mean low water line of the Delaware - New Jersey boundary. These values were calculated from descriptions contained in this document and transformed to the correct datum.</srccontr>
+            </srcinfo>
+            <srcinfo>
+                <srccite>
+                    <citeinfo>
+                        <pubdate>18940101</pubdate>
+                        <title>The Boundary Line Between the States of Pennsylvania and Delaware</title>
+                    </citeinfo>
+                </srccite>
+                <typesrc>None</typesrc>
+                <srccitea>The Boundary Line Between the States of Pennsylvania and Delaware</srccitea>
+                <srccontr>A descriptive and historical account of the circular portion of the Delaware boundary. An understanding of how the circular portions of the boundary were delineated was necessary for the creation of the computer programs (AMLs) which were used to create the digital representation of the boundary.</srccontr>
+            </srcinfo>
+            <procstep>
+                <procdesc>Mr. William Schenck of the Delaware Geological Survey graciously provided most of the sources that were used either directly or indirecly to create this version of the lines comprising the Delaware State boundary. A text file containing NAD83 (1991) point positions for boundary and reference monuments was created. This information was extracted from Joint Agreements between the States of Delaware, New Jersey, Pennsylvania, and Maryland. Not used were computed boundary points and boundary reference monument positions from "Exhibit C" of the Joint Agreement between Delaware and New Jersey along the 1934 mean low water line (20010829). Added to this text file were 1) additional calculated positions along the Delaware - New Jersey boundary originating from the 1934/1935 U.S. Supreme Court Decree, and 2) other pertinent miscellaneous point positions used in the computation and delineation of the boundary. The mean low water line portion of the boundary between the States of Delaware and New Jersey was revised by locally registering the composite map from the 1934/1935 U.S. Supreme Court Decree with the USGS boundary DLG data and the 2002 orthoimage. The geometry of this revised boundary was then registered to the calculated positions of appropriate monuments as described in the 1934/1935 U.S. Supreme Court Decree. A series of GIS computer software (ESRI Arc Macro Language) - AML) programs were developed by Mr. George Miller of the USGS that used as input, the positional data from the source information listed above. Output from this program yielded an an ESRI coverage. The ESRI coverage data were then exported to point, line, and polygon shapefiles. The line shapefile was then interactively edited in order to fulfill specific content and attribution requirements.</procdesc>
+                <procdate>20031201</procdate>
+                <proccont>
+                    <cntinfo>
+                        <cntorgp>
+                            <cntorg>U.S. Geological Survey</cntorg>
+                            <cntper>George Miller</cntper>
+                        </cntorgp>
+                        <cntaddr>
+                            <addrtype>unknown</addrtype>
+                            <address>1400 Independence Road</address>
+                            <city>Rolla</city>
+                            <state>Missouri</state>
+                            <postal>65401</postal>
+                        </cntaddr>
+                        <cntvoice>573/308-3519</cntvoice>
+                    </cntinfo>
+                </proccont>
+            </procstep>
+        </lineage>
+    </dataqual>
+    <spdoinfo>
+        <direct>Vector</direct>
+        <ptvctinf>
+            <sdtsterm>
+                <sdtstype>GT-polygon composed of chains</sdtstype>
+                <ptvctcnt>9</ptvctcnt>
+            </sdtsterm>
+        </ptvctinf>
+    </spdoinfo>
+    <eainfo>
+        <detailed>
+            <enttyp>
+                <enttypl>EGIS_OWNER.BOUNDARIES_STATE_COUNTY</enttypl>
+            </enttyp>
+            <attr>
+                <attrlabl>TYPE</attrlabl>
+                <attrdef>Type denotes the landform. 
+Including water, Island and Mainland.</attrdef>
+            </attr>
+            <attr>
+                <attrlabl>Shape</attrlabl>
+                <attrdef>Feature geometry.</attrdef>
+                <attrdefs>ESRI</attrdefs>
+                <attrdomv>
+                    					
+                    <udom>Coordinates defining the features.</udom>
+                    				
+                </attrdomv>
+            </attr>
+            <attr>
+                <attrlabl>GLOBALID</attrlabl>
+            </attr>
+            <attr>
+                <attrlabl>SHAPE.AREA</attrlabl>
+            </attr>
+            <attr>
+                <attrlabl>SHAPE.LEN</attrlabl>
+            </attr>
+            <attr>
+                <attrlabl>NAME</attrlabl>
+                <attrdef>Name  denotes the actual name of the landform by county name, island name, state or water.</attrdef>
+            </attr>
+            <attr>
+                <attrlabl>OBJECTID</attrlabl>
+                <attrdef>Internal feature number.</attrdef>
+                <attrdefs>ESRI</attrdefs>
+                <attrdomv>
+                    					
+                    <udom>Sequential unique whole numbers that are automatically generated.</udom>
+                    				
+                </attrdomv>
+            </attr>
+        </detailed>
+    </eainfo>
+    <distinfo>
+        <distrib>
+            <cntinfo>
+                <cntorgp>
+                    <cntorg>Delaware Division of Technology and Information - FirstMap</cntorg>
+                </cntorgp>
+                <cntaddr>
+                    <addrtype>mailing and physical</addrtype>
+                    <address>801 Silver Lake Blvd</address>
+                    <city>Dover</city>
+                    <state>DE</state>
+                    <postal>19904</postal>
+                    <country>US</country>
+                </cntaddr>
+                <cntvoice>302-739-9560</cntvoice>
+                <cntemail>DTI_GIS@state.de.us</cntemail>
+            </cntinfo>
+        </distrib>
+        <distliab>See access and use constraints information.</distliab>
+    </distinfo>
+    <metainfo>
+        <metd>20180703</metd>
+        <metc>
+            <cntinfo>
+                <cntorgp>
+                    <cntorg>Delaware Division of Technology and Information - FirstMap</cntorg>
+                </cntorgp>
+                <cntaddr>
+                    <addrtype>mailing and physical</addrtype>
+                    <address>801 Silver Lake Blvd</address>
+                    <city>Dover</city>
+                    <state>DE</state>
+                    <postal>19904</postal>
+                    <country>US</country>
+                </cntaddr>
+                <cntvoice>302-739-9560</cntvoice>
+                <cntemail>DTI_GIS@state.de.us</cntemail>
+            </cntinfo>
+        </metc>
+        <metstdn>FGDC Content Standard for Digital Geospatial Metadata</metstdn>
+        <metstdv>FGDC-STD-001-1998</metstdv>
+        <mettc>local time</mettc>
+    </metainfo>
+</metadata>
