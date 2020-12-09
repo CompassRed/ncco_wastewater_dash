@@ -86,7 +86,7 @@ shinyServer(function(input, output, session) {
     ) %>% janitor::clean_names()
     
     data_county_overview <- read_excel(filename,
-                                sheet = "County Level Data"
+                                sheet = "County Level Case Data"
     ) %>% janitor::clean_names() %>% 
         #rename(log_levels = value) %>% 
         mutate(date = as.Date(date))

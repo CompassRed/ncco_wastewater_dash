@@ -22,7 +22,7 @@ about_div <-
                              tags$p(tags$i("“We will look anywhere and everywhere to collect data to make this invisible enemy more visible.”",HTML("<br>"),style = "font-weight: bold;"),"– County Executive Matt Meyer",class = "text-center"),
                              tags$p("Have feedback? Email us at ",tags$a(href = "mailto:COVID19@newcastlede.org?subject=Feedback on NCC Biobot Dashboard","COVID19@newcastlede.org"),class = "text-center"),
                              
-                             tags$p("In April of 2020, New Castle County Executive Matt Meyer announced a partnership with ",tags$a("Biobot Analytics, Inc.",href = "https://www.biobot.io/",target = "_blank"), "to begin regular analysis of county and city of Wilmington wastewater in order to estimate the level of novel coronavirus in the sewer service area. In August, those efforts are being continued through a parternship with the University of Delaware's newly created",tags$a("Center for Environmental and Wastewater Epidemiological Research (CEWER).",href = "https://www.udel.edu/academics/colleges/canr/departments/animal-and-food-sciences/affiliated-centers/cewer/",target = "_blank")),
+                             tags$p("In April of 2020, New Castle County Executive Matt Meyer announced a partnership with ",tags$a("Biobot Analytics, Inc.",href = "https://www.biobot.io/",target = "_blank"), "to begin regular analysis of county and city of Wilmington wastewater in order to estimate the level of novel coronavirus in the sewer service area. In August, those efforts are being continued through a parternship with the University of Delaware's newly created",tags$a("Center for Environmental and Wastewater-based Epidemiological Research (CEWER).",href = "https://www.udel.edu/academics/colleges/canr/departments/animal-and-food-sciences/affiliated-centers/cewer/",target = "_blank")),
                              
                              tags$p(HTML("The <span style = 'font-weight: bold;'>Northern New Castle County Aggregate Sewer System</span> sampling site includes all the wastewater in New Castle County except for Delaware City/St. Georges, South of the Canal (excl. Middletown) and Port Penn. The sampling covers approximately 480K of the 560K residents in New Castle County.")),
                              
@@ -141,7 +141,7 @@ tags$div(
   tags$h5("BioBot Analytics"),
   tags$p(tags$a(href = "https://www.biobot.io",target = "_blank","Biobot Homepage")),
   
-  tags$h5("University of Delaware Center for Environmental and Wastewater Epidemiological Research (CEWER)"),
+  tags$h5("University of Delaware Center for Environmental and Wastewater-based Epidemiological Research (CEWER)"),
   tags$p(tags$a(href = "https://www.udel.edu/academics/colleges/canr/departments/animal-and-food-sciences/affiliated-centers/cewer/",target = "_blank","CEWER Homepage")),
   
   tags$h5("CompassRed"),

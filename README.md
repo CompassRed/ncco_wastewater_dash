@@ -3,7 +3,7 @@
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
 ## Overview
-In April of 2020, [New Castle County (NCCo)](https://nccde.org/) Executive Matt Meyer announced a partnership with Biobot Analytics, Inc. to begin regular analysis of county and city of Wilmington wastewater in order to estimate the level of novel coronavirus in the sewer service area. In August, those efforts are being continued through a parternship with the University of Delaware's newly created [Center for Environmental and Wastewater Epidemiological Research (CEWER)](https://www.udel.edu/academics/colleges/canr/departments/animal-and-food-sciences/affiliated-centers/cewer/). NCCo tasked [CompassRed](https://www.compassred.com/) with creating an interactive dashboard for this information (previously presented to the public in an Excel file).
+In April of 2020, [New Castle County (NCCo)](https://nccde.org/) Executive Matt Meyer announced a partnership with Biobot Analytics, Inc. to begin regular analysis of county and city of Wilmington wastewater in order to estimate the level of novel coronavirus in the sewer service area. In August, those efforts are being continued through a parternship with the University of Delaware's newly created [Center for Environmental and Wastewater-based Epidemiological Research (CEWER)](https://www.udel.edu/academics/colleges/canr/departments/animal-and-food-sciences/affiliated-centers/cewer/). NCCo tasked [CompassRed](https://www.compassred.com/) with creating an interactive dashboard for this information (previously presented to the public in an Excel file).
 
 ## Technology Used
 This dashboard was created using R's application framework `shiny`. Main R packages used are:
