@@ -22,18 +22,15 @@ about_div <-
                              tags$p(tags$i("“We will look anywhere and everywhere to collect data to make this invisible enemy more visible.”",HTML("<br>"),style = "font-weight: bold;"),"– County Executive Matt Meyer",class = "text-center"),
                              tags$p("Have feedback? Email us at ",tags$a(href = "mailto:COVID19@newcastlede.org?subject=Feedback on NCC Biobot Dashboard","COVID19@newcastlede.org"),class = "text-center"),
                              
-                             tags$p("In April of 2020, New Castle County Executive Matt Meyer announced a partnership with ",tags$a("Biobot Analytics, Inc.",href = "https://www.biobot.io/",target = "_blank"), "to begin regular analysis of county and city of Wilmington wastewater in order to estimate the level of novel coronavirus in the sewer service area. In August, those efforts are being continued through a parternship with the University of Delaware's newly created",tags$a("Center for Environmental and Wastewater-based Epidemiological Research (CEWER).",href = "https://www.udel.edu/academics/colleges/canr/departments/animal-and-food-sciences/affiliated-centers/cewer/",target = "_blank")),
+                             tags$p("This data is derived through the science of wastewater-based epidemiology that can be used to detect the level of virus that causes COVID-19 in our wastewater. It can be used alongside clinical testing data to understand the burden of disease in our local population."),
+                             
+                             tags$p("This data is provided through the leadership of ",tags$span("New Castle County Executive Matt Meyer",style="font-weight:bold;"), " in partnership with the ",tags$a("Center for Environmental and Wastewater-based Epidemiological Research (CEWER)",href = "https://www.udel.edu/academics/colleges/canr/departments/animal-and-food-sciences/affiliated-centers/cewer/",target = "_blank")," and Biobot Analytics, Inc.  The County began wastewater testing in response to the COVID-19 pandemic in April of 2020."),
                              
                              tags$p(HTML("The <span style = 'font-weight: bold;'>Northern New Castle County Aggregate Sewer System</span> sampling site includes all the wastewater in New Castle County except for Delaware City/St. Georges, South of the Canal (excl. Middletown) and Port Penn. The sampling covers approximately 480K of the 560K residents in New Castle County.")),
                              
-                             tags$div(tags$span(tags$strong("———"),style = "color: black; font-weight: bolder;"),tags$span("Northern New Castle County Aggregate Sewer System Area Outline (",icon("info"),")") %>% bsplus::bs_embed_tooltip("The Wilmington Wastwater Treatment Plant processes wastewater for the outlined area on the map and includes the pump stations",placement = "bottom"),class = "text-center",style = "padding-bottom:5px;"),
-                             
-                             tags$div(tags$span(tags$strong("———"),style = "color: white; background-color: black; font-weight: bolder;"),tags$span(HTML("&nbsp;City of Newark Area Outline ("),icon("info"),")") %>% bsplus::bs_embed_tooltip("The area included in the City of Newark sampling site is also included by the Greater Newark/Pike Creek/Hockessin area",placement = "bottom"),class = "text-center"),
-                             tags$hr(),
-                             tags$p("The amount of virus detected in wastewater is shown on a graph with a logarithmic (or log) scale. This is a way of showing a wide range of numerical data in a relatively compact scale. The numbers are shown in increments of a factor of 10."),
-                             tags$p("The log scale chart allows for a better understanding of the coronavirus pandemic over rime. Here specifically, the amount of virus detected over multiple areas in New Castle County varies and the log scale helps depict this data most accurately."),
-                             tags$p("Samples are collected during the middle of the work week and are graphed to Wednesday’s date for
-that week."),
+                             tags$p(HTML("The amount of virus detected in wastewater is shown on a graph with a logarithmic (or log) scale. This is a way of showing a wide range of numerical data in a relatively compact scale. The numbers are shown in increments of a factor of 10.")),
+                             tags$p(HTML("The log scale chart allows for a better understanding of the coronavirus pandemic over time. Here specifically, the amount of virus detected over multiple areas in New Castle County varies and the log scale helps depict this data most accurately.")),
+                             tags$p(HTML("Samples are collected during the middle of the work week and are graphed to Wednesday’s date for that week.")),
                              tags$div(id = "faq_click",tags$p(tags$a("Click here to view the FAQ section",),class = "text-center"))
                     )
            )
@@ -100,16 +97,12 @@ faq_div <- fluidRow(
   tags$h3("How can I give feedback on this dashboard and ask questions?"),
   tags$p("Please email us at ",tags$a(href = "mailto:COVID19@newcastlede.org?subject=Feedback on NCC Biobot Dashboard","COVID19@newcastlede.org")," for all feedback and questions."),
   tags$h3("Why test for COVID-19 in wastewater?"),
-  tags$p("The virus that causes COVID-19 is called SARS-CoV-2 and may be shed in the stool and/or urine of infected individuals. The virus can be detected at varying levels in the New Castle County sewer system. Sampling the sewer system provides insight into the health of the entire sewer shed population and is a cost-effective means of obtaining information on thousands of people at once. This information is important complementary information to clinical testing data. People who are presymptomatic or asymptomic may still shed the virus and can be quantified in this testing process."),
-  
-  tags$h3("Why does the dashboard no longer present prevalence rates?"),
-  tags$p("As knowledge of the COVID-19 virus and how it is shed from the body has grown, it has been found that
-current models predicting prevalence rate may not be as accurate as once thought. Instead, comparing
-trends of viral concentration in wastewater compared to clinical cases provides helpful data that can be
-used to help predict the magnitude, direction and extent of the pandemic."),
+  tags$p("The virus that causes COVID-19 is called SARS-CoV-2 and may be shed in the stool and/or urine of infected individuals. The virus can be detected at varying levels in the New Castle County sewer system. Sampling the sewer system provides insight into the health of the entire sewer shed population and is a cost-effective means of obtaining information on thousands of people at once. This information is important complementary information to clinical testing data. People who are presymptomatic or asymptomatic may still shed the virus and can be quantified in this testing process."),
+  tags$p("All SARS-CoV-2 viruses can be detected in wastewater, including the variants of concern that you may see in the news headlines. These variants are caused by small genetic changes (known by the term mutation) that naturally occur as the virus evolves and moves from person to person. These genetic changes can be identified by genome sequencing."),
+  tags$p("Please remember that the normal precautions like masking, physical distance, and hand washing all work to protect you against all forms of SARS-CoV-2."),
   
   tags$h3("How can I interpret a logarithmic scale?"),
-  tags$p("You may be familiar with the Richter Scale, which is a logarithmic scale used to measure the magnitude of an earthquake. For example, you might not notice a great difference in an earthquake measuring a 2 and one measuring a 3, but an earthquake measuring a 6 is incredibly different, and actually is 10,000 times stronger than an earthquake measuring at a 2 on the Richter Scale."),
+  tags$p("You may be familiar with the Richter Scale, which is a logarithmic scale used to measure the magnitude of an earthquake. For example, you might not notice a great difference in an earthquake measuring a 2 and one measuring a 3, but an earthquake measuring a 6 is incredibly different, and is actually 10,000 times stronger than an earthquake measuring at a 2 on the Richter Scale."),
   
   tags$h3("How does this process work?"),
   tags$ol(
@@ -118,13 +111,7 @@ used to help predict the magnitude, direction and extent of the pandemic."),
     tags$li("Through analysis of the PCR data, UD scientists look for the unique genetic signature of the SARS-CoV-2 virus in the samples."),
     tags$li("Quantification of the SARS-CoV-2 virus genetic material present in the water samples is made available to the public and shown on a graph with both upper and lower levels displayed. Correlations, connections, and forecasts can be made by connecting clinical information to the finding of varying levels of virus across the sewer shed.")
   ),
-  tags$h3("How can this data be used?"),
-  tags$p("Because this sampling covers the entire sewered populations at scale, the data can be used to identify:"),
-  tags$ul(
-    tags$li("Trends of infection in the population"),
-    tags$li("Where to deploy resources and additional clinical testing"),
-    tags$li("Warning signs of a new outbreak")
-  ),
+  tags$p("Similar wastewater monitoring initiatives are occurring around the globe.  To learn more about how this data is being used worldwide, visit ",tags$a("www.covid19wbec.org",href = "www.covid19wbec.org.",target="_blank"),"."),
   
   tags$h3("How should I read this data?"),
   tags$p("The data depicted indicates the levels of virus detected in different water samples. This data is given in units of virus genetic material detected per a specific volume of water. The data generated by UD includes a confidence interval, or range where the true value lies, around the reported average. This is included because wastewater samples vary due to many factors including the population contributing to the watershed, the weather during the time of collection, and geography of the area. All of these factors can affect how well the virus is recovered and detected. Data for the confidence interval from Biobot were not provided in samples (prior to 08/13/20)."),
@@ -132,8 +119,14 @@ used to help predict the magnitude, direction and extent of the pandemic."),
   tags$h3("Should I be concerned about contracting COVID-19 from the sewer system?"),
   tags$p("The testing performed here only detects the genetic material from the SARS-CoV-2 virus. While it is not likely that the virus detected is infectious or transmissible, this cannot be determined by this testing. The World Health Organization states that \"there is no evidence to date that COVID-19 has been transmitted via sewage systems with or without wastewater treatment.\" Please note that the County’s sewer system is contained and inaccessible to the public, and all samples collected are prior to treatment and disinfection at the wastewater treatment plant."),
   
+  tags$h3("Why does the dashboard no longer present prevalence rates?"),
+  tags$p("As knowledge of the COVID-19 virus and how it is shed from the body has grown, it has been found that
+current models predicting prevalence rate may not be as accurate as once thought. Instead, comparing
+trends of viral concentration in wastewater compared to clinical cases provides helpful data that can be
+used to help predict the magnitude, direction and extent of the pandemic."),
+  
   tags$h3("Where is other COVID-19-related data for Delaware?"),
-  tags$p("To see estimates with actual positive test results in the State of Delaware, go to the ",tags$a("Delaware Health and Human Services website at coronavirus.delaware.gov.",href = "https://coronavirus.delaware.gov/",target = "_blank")),
+  tags$p("To see more COVID-19-related information for the State of Delaware, including clinical case estimates and vaccine information, go to the ",tags$a("Delaware Health and Human Services website at coronavirus.delaware.gov.",href = "https://coronavirus.delaware.gov/",target = "_blank")),
   
   tags$br(),tags$br()),
   column(width = 6,
