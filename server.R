@@ -174,8 +174,6 @@ shinyServer(function(input, output, session) {
     #update station selectize input
     output$station_select <- renderUI({
         choices <- data_rc_master() %>%
-            filter(date == max(date)) %>%
-            arrange(desc(log_levels)) %>%
             select(station) %>%
             unique() %>% pull()
         
@@ -219,24 +217,24 @@ shinyServer(function(input, output, session) {
         data_rc_master <- data_rc_master()
         
         data_wilmington_wwtp <- data_rc_master %>%
-            filter(station == "N. New Castle Co. Aggregate Sewer System",
-                   date == max(date))
+            filter(station == "N. New Castle Co. Aggregate Sewer System") %>% 
+            filter(date == max(date))
         
         data_christiana <- data_rc_master %>%
-            filter(station == "Christiana Hospital",
-                   date == max(date))
+            filter(station == "Christiana Hospital") %>% 
+            filter(date == max(date))
         
         data_newark <- data_rc_master %>%
-            filter(station == "City of Newark",
-                   date == max(date))
+            filter(station == "City of Newark") %>% 
+            filter(date == max(date))
         
-        data_prep <- data_rc_master %>% filter(date == max(date)) %>% arrange(desc(log_levels)) %>% 
+        data_prep <- data_rc_master %>% group_by(station) %>% filter(date == max(date)) %>% ungroup() %>% arrange(desc(log_levels)) %>% 
             filter(station != "N. New Castle Co. Aggregate Sewer System",
                    station != "Christiana Hospital")
         
         data_counties <- de_counties_shape %>% filter(name %in% c("New Castle","Kent","Sussex"))
         
-        data_all <- data_rc_master %>% filter(date == max(date))
+        data_all <- data_rc_master %>% group_by(station) %>% filter(date == max(date)) %>% ungroup()
         
         p_all <- data_all
         
@@ -382,8 +380,8 @@ shinyServer(function(input, output, session) {
         #                                       <i>Total Log Levels: ",total_log_levels,"</i>")
         
         data_wilmington_wwtp <- data_rc_master() %>%
-            filter(station == "N. New Castle Co. Aggregate Sewer System",
-                   date == max(date))
+            filter(station == "N. New Castle Co. Aggregate Sewer System") %>% 
+            filter(date == max(date))
             
         leaflet(options = leafletOptions(zoomControl = FALSE,attributionControl = FALSE,worldCopyJump = TRUE)) %>% 
             addTiles() %>% 
@@ -462,7 +460,9 @@ shinyServer(function(input, output, session) {
         selected_field <- sym(selected_field)
         
         data_input_prep <- data_input %>% 
+            group_by(station) %>% 
             filter(date == max(date)) %>% 
+            ungroup() %>% 
             arrange(desc(!!selected_field)) %>% 
             mutate(field_normalized = scales::rescale(!!selected_field))
         
@@ -540,7 +540,7 @@ shinyServer(function(input, output, session) {
             geom_point(color = "#666666") +
             geom_vline(xintercept=as.numeric(as.Date("2020-08-13")), linetype="dashed", color = "black",alpha = .4) +
             #annotate("text", x = as.Date("2020-08-13"), y = annotation_y_value, label = "8/13/20\nUD Testing Begins",size = 2.5) +
-            scale_x_date(breaks = function(x) c(seq.Date(from = min(break_dates), to = max(break_dates), by = "6 weeks"),as.Date("2020-08-13"),max(data$date)),labels = scales::date_format("%m/%d")) +
+            scale_x_date(breaks = function(x) c(seq.Date(from = min(break_dates), to = max(break_dates), by = "8 weeks"),max(data$date)),labels = scales::date_format("%m/%d")) +
             scale_y_log10(labels = scales::comma_format(1)) +
             coord_cartesian(ylim = c(10000,NA)) +
             expand_limits(y = 0) +
@@ -579,9 +579,9 @@ shinyServer(function(input, output, session) {
         plot_output <- 
             ggplotly(data %>% 
                          ggplot() +
-                         geom_line(aes(x = date, y = cases,group=1,text = paste0("Date: ",format(date,"%m/%y"),"<br>Confirmed Cases: ",scales::comma(cases,1))),color = "blue",alpha = .2) +
-                         geom_line(aes(x = date,y = cases_roll7,group=2,text = paste0("Date: ",format(date,"%m/%y"),"<br>Confirmed Cases (Rolling 7-Day Avg.): ",scales::comma(cases_roll7,1))),color = "blue") +
-                         scale_x_date(breaks = function(x) c(seq.Date(from = min(break_dates), to = max(break_dates), by = "6 weeks"),max(data$date)),labels = scales::date_format("%m/%d")) +
+                         geom_line(aes(x = date, y = cases,group=1,text = paste0("Date: ",format(date,"%m/%d"),"<br>Confirmed Cases: ",scales::comma(cases,1))),color = "blue",alpha = .2) +
+                         geom_line(aes(x = date,y = cases_roll7,group=2,text = paste0("Date: ",format(date,"%m/%d"),"<br>Confirmed Cases (Rolling 7-Day Avg.): ",scales::comma(cases_roll7,1))),color = "blue") +
+                         scale_x_date(breaks = function(x) c(seq.Date(from = min(break_dates), to = max(break_dates), by = "8 weeks"),max(data$date)),labels = scales::date_format("%m/%d")) +
                          scale_y_continuous(labels = scales::comma_format(1)) +
                          labs(x = "",
                               y = "") +
@@ -612,7 +612,7 @@ shinyServer(function(input, output, session) {
                          geom_vline(xintercept=as.numeric(as.Date("2020-08-13")), linetype="dashed", color = "black",alpha = .4) +
                          #geom_segment(aes(xend = as.numeric(as.Date("2020-08-13")),yend = 500000)) +
                          #annotate("text", x = as.Date("2020-08-13"), y = 500000, label = "8/13/20\nUD Testing Begins",size = 2.5) +
-                         scale_x_date(breaks = function(x) c(seq.Date(from = min(break_dates), to = max(break_dates), by = "6 weeks"),as.Date("2020-08-13"),max(data$date)),labels = scales::date_format("%m/%d")) +
+                         scale_x_date(breaks = function(x) c(seq.Date(from = min(break_dates), to = max(break_dates), by = "8 weeks"),max(data$date)),labels = scales::date_format("%m/%d")) +
                          scale_y_log10(labels = scales::comma_format()) +
                          ggplot2::coord_cartesian(ylim = c(10000,NA)) +
                          expand_limits(y = 0) +
@@ -633,8 +633,8 @@ shinyServer(function(input, output, session) {
 
     output$n_ncco_scorecard <- shiny::renderUI({
         data <- data_rc_master() %>% 
-            filter(station == "N. New Castle Co. Aggregate Sewer System",
-                   date == max(date))
+            filter(station == "N. New Castle Co. Aggregate Sewer System") %>% 
+            filter(date == max(date))
         
         text_out <- paste0("<span style = 'font-weight:bold;'>","Northern New Castle County Aggregate Sewer System","</span><br><i>Virus Levels (viral copies/L): ",scales::comma(data$log_levels,1),"</i> ( ",icon("info")," )") %>%
             HTML()
