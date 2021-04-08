@@ -187,7 +187,7 @@ shinyServer(function(input, output, session) {
     })
     
     output$as_of_date_ps <- renderUI({
-        tags$a(icon("calendar")," ",paste0("Data as of: ",req(as_of_date())),class = "ui grey ribbon label")
+        tags$a(icon("calendar")," ",paste0("Data as of or before: ",req(as_of_date())),class = "ui grey ribbon label")
     })
     
     as_of_date2 <- reactive({
@@ -195,7 +195,7 @@ shinyServer(function(input, output, session) {
     })
     
     output$as_of_date_ps2 <- renderUI({
-        tags$a(icon("calendar")," ",paste0("Data as of: ",req(as_of_date())),class = "ui grey ribbon label")
+        tags$a(icon("calendar")," ",paste0("Data as of or before: ",req(as_of_date())),class = "ui grey ribbon label")
     })
 
 # MAPPING -----------------------------------------------------------------
