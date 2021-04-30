@@ -480,7 +480,7 @@ shinyServer(function(input, output, session) {
             mutate(na_add = ifelse(is.na(log_levels)," (no data)","")) %>% 
             mutate(station_na_prep = paste0(station,na_add)) %>% 
             mutate(station_html = case_when(
-                station %in% c("South of the Canal (excl. Middletown)", "Port Penn", "Delaware City/St. Georges") ~ paste0("<i>",station_na_prep,"</i>"),
+                #station %in% c("South of the Canal (excl. Middletown)", "Port Penn", "Delaware City/St. Georges") ~ paste0("<i>",station_na_prep,"</i>"),
                 TRUE ~ station_na_prep
             ))
         
@@ -537,10 +537,11 @@ shinyServer(function(input, output, session) {
             geom_ribbon(aes(ymin = lower,ymax = upper),fill = "lightblue",alpha = .3) +
             geom_hline(yintercept=4, linetype="dashed", color = "grey") +
             geom_line(color = "#666666") +
-            geom_point(color = "#666666") +
+            geom_point(color = "#666666",size = 1) +
             geom_vline(xintercept=as.numeric(as.Date("2020-08-13")), linetype="dashed", color = "black",alpha = .4) +
             #annotate("text", x = as.Date("2020-08-13"), y = annotation_y_value, label = "8/13/20\nUD Testing Begins",size = 2.5) +
-            scale_x_date(breaks = function(x) c(seq.Date(from = min(break_dates), to = max(break_dates), by = "8 weeks"),max(data$date)),labels = scales::date_format("%m/%d")) +
+            # scale_x_date(breaks = function(x) c(seq.Date(from = min(break_dates), to = max(break_dates), by = "8 weeks"),max(data$date)),labels = scales::date_format("%m/%d")) +
+            scale_x_date(date_labels = "%b '%y") +
             scale_y_log10(labels = scales::comma_format(1)) +
             coord_cartesian(ylim = c(10000,NA)) +
             expand_limits(y = 0) +
@@ -581,7 +582,8 @@ shinyServer(function(input, output, session) {
                          ggplot() +
                          geom_line(aes(x = date, y = cases,group=1,text = paste0("Date: ",format(date,"%m/%d"),"<br>Confirmed Cases: ",scales::comma(cases,1))),color = "blue",alpha = .2) +
                          geom_line(aes(x = date,y = cases_roll7,group=2,text = paste0("Date: ",format(date,"%m/%d"),"<br>Confirmed Cases (Rolling 7-Day Avg.): ",scales::comma(cases_roll7,1))),color = "blue") +
-                         scale_x_date(breaks = function(x) c(seq.Date(from = min(break_dates), to = max(break_dates), by = "8 weeks"),max(data$date)),labels = scales::date_format("%m/%d")) +
+                         # scale_x_date(breaks = function(x) c(seq.Date(from = min(break_dates), to = max(break_dates), by = "8 weeks"),max(data$date)),labels = scales::date_format("%m/%d")) +
+                         scale_x_date(date_labels = "%b '%y") +
                          scale_y_continuous(labels = scales::comma_format(1)) +
                          labs(x = "",
                               y = "") +
@@ -608,11 +610,12 @@ shinyServer(function(input, output, session) {
                          geom_ribbon(aes(ymin = lower,ymax = upper),fill = "orange",alpha = .3) +
                          geom_hline(yintercept=4, linetype="dashed", color = "grey") +
                          geom_line(color = "#505050") +
-                         geom_point(color = "#505050") +
+                         geom_point(color = "#505050",size = 1) +
                          geom_vline(xintercept=as.numeric(as.Date("2020-08-13")), linetype="dashed", color = "black",alpha = .4) +
                          #geom_segment(aes(xend = as.numeric(as.Date("2020-08-13")),yend = 500000)) +
                          #annotate("text", x = as.Date("2020-08-13"), y = 500000, label = "8/13/20\nUD Testing Begins",size = 2.5) +
-                         scale_x_date(breaks = function(x) c(seq.Date(from = min(break_dates), to = max(break_dates), by = "8 weeks"),max(data$date)),labels = scales::date_format("%m/%d")) +
+                         # scale_x_date(breaks = function(x) c(seq.Date(from = min(break_dates), to = max(break_dates), by = "8 weeks"),max(data$date)),labels = scales::date_format("%m/%d")) +
+                         scale_x_date(date_labels = "%b '%y") +
                          scale_y_log10(labels = scales::comma_format()) +
                          ggplot2::coord_cartesian(ylim = c(10000,NA)) +
                          expand_limits(y = 0) +
