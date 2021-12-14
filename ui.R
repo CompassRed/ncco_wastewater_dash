@@ -58,6 +58,7 @@ chart_div <-
                              uiOutput("station_select"),
                              plotlyOutput("line_chart",height = "215px"),
                              tags$p(tags$i("08/13/20: University of Delaware begins sampling.",style = "color: grey;"),class="text-center"),
+                             tags$p(tags$i("10/01/21: New methodology implemented.",style = "color: grey;"),class="text-center"),
                              tags$p(tags$i("Y-axis represented on a log scale, shading represents 95% confidence interval.",style = "color: grey;"),class="text-center")
                              
                     )
@@ -82,6 +83,7 @@ chart_div2 <- column(width = 4,class = "col-sm-4 col-sm-offset-4 col-md-4 col-md
                                        tags$p(tags$i("Represents ~85% of the population in New Castle County"),class = "text-center"),
                                        plotlyOutput("total_sample_line_chart",height = "215px"),
                                        tags$p(tags$i("08/13/20: University of Delaware begins sampling.",style = "color: grey;"),class="text-center"),
+                                       tags$p(tags$i("10/01/21: New methodology implemented.",style = "color: grey;"),class="text-center"),
                                        tags$p(tags$i("Y-axis represented on a log scale, shading represents 95% confidence interval.",style = "color: grey;"),class = "text-center")
                                        
                                        

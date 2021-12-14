@@ -490,7 +490,7 @@ shinyServer(function(input, output, session) {
             geom_errorbar(aes(ymin=lower, ymax=upper,color = hex_code_darker),alpha = .7, width=.1
                               #,position=position_dodge(.9)
                           ) +
-            coord_flip(ylim = c(10000,NA)) + #to do: bar coming in from below 4
+            coord_flip(ylim = c(100,NA)) + #to do: bar coming in from below 4
             # scale_y_continuous(labels = scales::comma_format(1)) +
             scale_y_log10(labels = scales::comma_format(1)) +
             labs(x = "",
@@ -539,30 +539,37 @@ shinyServer(function(input, output, session) {
             geom_line(color = "#666666") +
             geom_point(color = "#666666",size = 1) +
             geom_vline(xintercept=as.numeric(as.Date("2020-08-13")), linetype="dashed", color = "black",alpha = .4) +
-            #annotate("text", x = as.Date("2020-08-13"), y = annotation_y_value, label = "8/13/20\nUD Testing Begins",size = 2.5) +
-            # scale_x_date(breaks = function(x) c(seq.Date(from = min(break_dates), to = max(break_dates), by = "8 weeks"),max(data$date)),labels = scales::date_format("%m/%d")) +
+            geom_vline(xintercept=as.numeric(as.Date("2021-10-01")), linetype="dashed", color = "black",alpha = .4) +
+            geom_segment(aes(x = as.Date("2020-05-07"),xend = as.Date("2021-09-23"),y = 10000, yend = 10000),linetype="dashed",color = "black",alpha = 0.1,size = .5) +
             scale_x_date(date_labels = "%b '%y") +
             scale_y_log10(labels = scales::comma_format(1)) +
-            coord_cartesian(ylim = c(10000,NA)) +
+            coord_cartesian(ylim = c(100,NA)) +
             expand_limits(y = 0) +
             labs(x = "",
                  y = "") +
             theme_compassred() +
             theme(legend.position = "none"),
             tooltip = "text") %>% 
-            # plotly::add_lines(x=~date, y=~log_levels, colors=NULL, yaxis="y2",
-            #           data=data, showlegend=FALSE, inherit=FALSE) %>%
-            config(displayModeBar = F) %>% 
-            layout(margin = list(t = 0,
-                                 b = 0
-                                 #,r = 30
-                                 )
-                   #,yaxis2 = secondary_y
-                   # title = list(text = "Y-axis represented on a log scale, shading represents 95% confidence interval.",
-                   #              y = 0)
-                   )
+            config(displayModeBar = F)
+        
+        plot_output <- plot_output %>% 
+            layout(margin = list(t = 0,b = 0))
         
         plot_output
+        
+        # line <- list(
+        #     type = "line", 
+        #     x0 = as.Date("2021-01-01") %>% as.numeric(), x1 = as.Date("2021-05-01") %>% as.numeric(),
+        #     y0 = 5000, y1 = 5000,
+        #     line = list(color = "green",width="1",dash="solid")
+        # )
+        # 
+        # plot_output$x$layout$shapes <- list(
+        #     if (is.null(plot_output$x$layout$shapes)) list() else plot_output$x$layout$shapes,
+        #     line)
+        # 
+        # print(plot_output$x$layout$shapes)
+        
     })
     
     output$county_cases_line_chart <- renderPlotly({
@@ -612,22 +619,29 @@ shinyServer(function(input, output, session) {
                          geom_line(color = "#505050") +
                          geom_point(color = "#505050",size = 1) +
                          geom_vline(xintercept=as.numeric(as.Date("2020-08-13")), linetype="dashed", color = "black",alpha = .4) +
-                         #geom_segment(aes(xend = as.numeric(as.Date("2020-08-13")),yend = 500000)) +
-                         #annotate("text", x = as.Date("2020-08-13"), y = 500000, label = "8/13/20\nUD Testing Begins",size = 2.5) +
-                         # scale_x_date(breaks = function(x) c(seq.Date(from = min(break_dates), to = max(break_dates), by = "8 weeks"),max(data$date)),labels = scales::date_format("%m/%d")) +
+                         geom_vline(xintercept=as.numeric(as.Date("2021-10-01")), linetype="dashed", color = "black",alpha = .4) +
+                         geom_segment(aes(x = as.Date("2020-05-07"),xend = as.Date("2021-09-23"),y = 10000, yend = 10000),linetype="dashed",color = "black",alpha = 0.1,size = .5) +
                          scale_x_date(date_labels = "%b '%y") +
                          scale_y_log10(labels = scales::comma_format()) +
-                         ggplot2::coord_cartesian(ylim = c(10000,NA)) +
+                         ggplot2::coord_cartesian(ylim = c(100,NA)) +
                          expand_limits(y = 0) +
                          labs(x = "",
                               y = "") +
                          theme_compassred() +
                          theme(legend.position = "none"),
                      tooltip = "text") %>% 
-            config(displayModeBar = F) %>% 
-            layout(margin = list(t = 0,b = 0))
+            config(displayModeBar = F)
         
-        plot_output
+        plot_output %>% 
+            layout(
+                margin = list(t = 0,b = 0)
+                # shapes=list(list(
+                #     type = "line", 
+                #     x0 = 1, x1 = .5, xref = "paper",
+                #     y0 = 5000, y1 = 5000,yref = "y",
+                #     line = list(color = "red",width="5",dash="solid")
+                # ))
+            )
     })
     
     
