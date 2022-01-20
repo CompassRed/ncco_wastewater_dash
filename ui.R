@@ -59,7 +59,7 @@ chart_div <-
                              plotlyOutput("line_chart",height = "215px"),
                              tags$p(tags$i("08/13/20: University of Delaware begins sampling.",style = "color: grey;"),class="text-center"),
                              tags$p(tags$i("10/01/21: New methodology implemented.",style = "color: grey;"),class="text-center"),
-                             tags$p(tags$i("Y-axis represented on a log scale, shading represents 95% confidence interval.",style = "color: grey;"),class="text-center")
+                             tags$p(tags$i("Y-axis is represented on a log scale, see ", tags$a("FAQ",id="faq_click2")," for more information",style = "color: grey;"),class="text-center")
                              
                     )
            )
@@ -79,12 +79,12 @@ chart_div2 <- column(width = 4,class = "col-sm-4 col-sm-offset-4 col-md-4 col-md
                                        tags$p(tags$a("Source: DHHS My Healthy Community",href = "https://myhealthycommunity.dhss.delaware.gov/locations/county-new-castle#cases",target = "_blank"),class = "text-center"),
                                        plotlyOutput("county_cases_line_chart",height = "215px"),
                                        
-                                       tags$h3(HTML("Northern New Castle County Aggregate Sewer System<br>Virus Levels (viral copies/L)"),class = "text-center",style = "margin-bottom: 0; margin-top: 5px;"),
+                                       tags$h3(HTML("Northern New Castle County Aggregate Sewer System SARS-CoV-2 Levels (normalized viral copies/L)"),class = "text-center",style = "margin-bottom: 0; margin-top: 5px;"),
                                        tags$p(tags$i("Represents ~85% of the population in New Castle County"),class = "text-center"),
                                        plotlyOutput("total_sample_line_chart",height = "215px"),
                                        tags$p(tags$i("08/13/20: University of Delaware begins sampling.",style = "color: grey;"),class="text-center"),
                                        tags$p(tags$i("10/01/21: New methodology implemented.",style = "color: grey;"),class="text-center"),
-                                       tags$p(tags$i("Y-axis represented on a log scale, shading represents 95% confidence interval.",style = "color: grey;"),class = "text-center")
+                                       tags$p(tags$i("Y-axis is represented on a log scale, see ",tags$a("FAQ",id="faq_click3")," for more information.",style = "color: grey;"),class = "text-center")
                                        
                                        
                               )
@@ -137,7 +137,8 @@ tags$div(
   
   tags$h5("New Castle County, Delaware"),
   tags$p(tags$a(href = "https://www.nccde.org/",target = "_blank","New Castle County Homepage"),
-         tags$br(),tags$a(href = "https://www.nccde.org/DocumentCenter/View/38959/covidupdate",target = "_blank","Raw Data Collected")),
+         tags$br(),
+         tags$p("For inquiries regarding raw data please contact Dr. Kali Kniel at Kniel@udel.edu.")),
   tags$h5("BioBot Analytics"),
   tags$p(tags$a(href = "https://www.biobot.io",target = "_blank","Biobot Homepage")),
   

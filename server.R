@@ -31,6 +31,14 @@ shinyServer(function(input, output, session) {
         shinyjs::runjs("$('a[data-value=\\'faq\\']').trigger('click');")
     })
     
+    shinyjs::onclick("faq_click2",{
+        shinyjs::runjs("$('a[data-value=\\'faq\\']').trigger('click');")
+    })
+    
+    shinyjs::onclick("faq_click3",{
+        shinyjs::runjs("$('a[data-value=\\'faq\\']').trigger('click');")
+    })
+    
     #FIX DIV HEIGHTS/WIDTHS WHEN DEVICE WIDTH CHANGES
     observeEvent(map_data(),{
         #when browser window is mobile width, remove the absolute position-based element that is included in the map div. also on mobile, add some space between cards.
@@ -70,16 +78,17 @@ shinyServer(function(input, output, session) {
                             sheet = "Clean Data"
     ) %>% 
         rename(log_levels = `SARS-CoV-2 Copies/L`,
-               lower = `Lower Limit (Copies/L)`,
-               upper = `Upper Limit (Copies/L)`) %>% 
+               non_normalized_log_levels =  `SARS-CoV-2 Non-Normalized qPCR Copies/L`
+               # lower = `Lower Limit (Copies/L)`,
+               # upper = `Upper Limit (Copies/L)`
+               ) %>% 
         janitor::clean_names() %>% 
-        mutate(date = as.Date(date)) %>% 
-        mutate(upper = case_when(source == "Biobot" ~ log_levels,
-                                 T ~ upper),
-               lower = case_when(source == "Biobot" ~ log_levels,
-                                 T ~ lower)
-        )
-               
+        mutate(date = as.Date(date))
+        # mutate(upper = case_when(source == "Biobot" ~ log_levels,
+        #                          T ~ upper),
+        #        lower = case_when(source == "Biobot" ~ log_levels,
+        #                          T ~ lower)
+        # )
     
     data_lookup <- read_excel(filename,
                               sheet = "Parent Lookup"
@@ -148,19 +157,21 @@ shinyServer(function(input, output, session) {
         data %>% 
             mutate(date = lubridate::as_date(date)) %>% 
             mutate(label_both = paste0(station,": ",scales::comma(log_levels,1)),
-                   label_both_date = paste0("Date: ",format(date,"%m/%d"), "<br>","Virus Levels (viral copies/L): ",scales::comma(log_levels,1)),
+                   label_both_date = paste0("Date: ",format(date,"%m/%d/%y"), "<br>","Virus Levels (viral copies/L): ",scales::comma(log_levels,1),"<br>","Non-Normalized qPCR Copies/L: ",scales::comma(non_normalized_log_levels,1)),
                    parent_label = ifelse(parent != "None",glue::glue("Subset of: {parent}<br>"),""),
                    label_full = glue::glue("<b>{station}</b><br>
                                            {parent_label}
-                                           Date: {format(date,\"%m/%d\")}<br>
-                                            <i>Virus Levels (viral copies/L): {scales::comma(log_levels,1)}</i><br>"),
+                                           Date: {format(date,\"%m/%d/%y\")}<br>
+                                            <i>Virus Levels (normalized viral copies/L): {scales::comma(log_levels,1)}</i><br>
+                                            <i>Non-Normalized qPCR Copies/L: {scales::comma(non_normalized_log_levels,1)}</i>"),
                    label_full = map(.x = label_full,
                                     .f =  htmltools::HTML),
                    label_sampling_site = glue::glue("<b>{station}</b><br>
                                                     {parent_label}
                                                     <u>Sampling Site Location</u><br>
-                                                    Date: {format(date,\"%m/%d\")}<br>
-                                                    <i>Virus Levels (viral copies/L): {scales::comma(log_levels,1)}</i><br>"),
+                                                    Date: {format(date,\"%m/%d/%y\")}<br>
+                                                    <i>Virus Levels (viral copies/L): {scales::comma(log_levels,1)}</i><br>
+                                                    <i>Non-Normalized qPCR Copies/L: {scales::comma(non_normalized_log_levels,1)}</i>"),
                    label_sampling_site = map(.x = label_sampling_site,
                                     .f =  htmltools::HTML),
                    )
@@ -373,7 +384,7 @@ shinyServer(function(input, output, session) {
             }
             
         county_outline_label <- paste0("<b>New Castle County</b><br>
-                                        Date: ",format(unique(county_data$date),"%m/%d"),"<br>",
+                                        Date: ",format(unique(county_data$date),"%m/%d/%y"),"<br>",
                                        "<i>Latest Confirmed COVID-19 Cases: ",cases,"</i>")
         
         # total_sample_outline_label <- paste0("<b>Total Sampled Area</b><br>
@@ -487,9 +498,9 @@ shinyServer(function(input, output, session) {
         ggplotly(data_input_clean %>% 
             ggplot(aes(reorder(station_html,!!selected_field),!!selected_field,text = label_both_date,key = station)) +
             geom_col(aes(fill = hex_code)) +
-            geom_errorbar(aes(ymin=lower, ymax=upper,color = hex_code_darker),alpha = .7, width=.1
-                              #,position=position_dodge(.9)
-                          ) +
+            # geom_errorbar(aes(ymin=lower, ymax=upper,color = hex_code_darker),alpha = .7, width=.1
+            #                   #,position=position_dodge(.9)
+            #               ) +
             coord_flip(ylim = c(100,NA)) + #to do: bar coming in from below 4
             # scale_y_continuous(labels = scales::comma_format(1)) +
             scale_y_log10(labels = scales::comma_format(1)) +
@@ -534,15 +545,15 @@ shinyServer(function(input, output, session) {
         plot_output <- 
             ggplotly(data %>% 
             ggplot(aes(date,log_levels,group = station,text = label_both_date)) +
-            geom_ribbon(aes(ymin = lower,ymax = upper),fill = "lightblue",alpha = .3) +
+            # geom_ribbon(aes(ymin = lower,ymax = upper),fill = "lightblue",alpha = .3) +
             geom_hline(yintercept=4, linetype="dashed", color = "grey") +
             geom_line(color = "#666666") +
-            geom_point(color = "#666666",size = 1) +
+            # geom_point(color = "#666666",size = 1) +
             geom_vline(xintercept=as.numeric(as.Date("2020-08-13")), linetype="dashed", color = "black",alpha = .4) +
             geom_vline(xintercept=as.numeric(as.Date("2021-10-01")), linetype="dashed", color = "black",alpha = .4) +
-            geom_segment(aes(x = as.Date("2020-05-07"),xend = as.Date("2021-09-23"),y = 10000, yend = 10000),linetype="dashed",color = "black",alpha = 0.1,size = .5) +
+            # geom_segment(aes(x = as.Date("2020-05-07"),xend = as.Date("2021-09-23"),y = 10000, yend = 10000),linetype="dashed",color = "black",alpha = 0.1,size = .5) +
             scale_x_date(date_labels = "%b '%y") +
-            scale_y_log10(labels = scales::comma_format(1)) +
+            scale_y_log10(labels = scales::comma_format(1),breaks = c(100,1000,10000,100000)) +
             coord_cartesian(ylim = c(100,NA)) +
             expand_limits(y = 0) +
             labs(x = "",
@@ -587,8 +598,8 @@ shinyServer(function(input, output, session) {
         plot_output <- 
             ggplotly(data %>% 
                          ggplot() +
-                         geom_line(aes(x = date, y = cases,group=1,text = paste0("Date: ",format(date,"%m/%d"),"<br>Confirmed Cases: ",scales::comma(cases,1))),color = "blue",alpha = .2) +
-                         geom_line(aes(x = date,y = cases_roll7,group=2,text = paste0("Date: ",format(date,"%m/%d"),"<br>Confirmed Cases (Rolling 7-Day Avg.): ",scales::comma(cases_roll7,1))),color = "blue") +
+                         geom_line(aes(x = date, y = cases,group=1,text = paste0("Date: ",format(date,"%m/%d/%y"),"<br>Confirmed Cases: ",scales::comma(cases,1))),color = "blue",alpha = .2) +
+                         geom_line(aes(x = date,y = cases_roll7,group=2,text = paste0("Date: ",format(date,"%m/%d/%y"),"<br>Confirmed Cases (Rolling 7-Day Avg.): ",scales::comma(cases_roll7,1))),color = "blue") +
                          # scale_x_date(breaks = function(x) c(seq.Date(from = min(break_dates), to = max(break_dates), by = "8 weeks"),max(data$date)),labels = scales::date_format("%m/%d")) +
                          scale_x_date(date_labels = "%b '%y") +
                          scale_y_continuous(labels = scales::comma_format(1)) +
@@ -614,15 +625,15 @@ shinyServer(function(input, output, session) {
         plot_output <- 
             ggplotly(data %>% 
                          ggplot(aes(date,log_levels,group = station,text = label_both_date)) +
-                         geom_ribbon(aes(ymin = lower,ymax = upper),fill = "orange",alpha = .3) +
+                         # geom_ribbon(aes(ymin = lower,ymax = upper),fill = "orange",alpha = .3) +
                          geom_hline(yintercept=4, linetype="dashed", color = "grey") +
                          geom_line(color = "#505050") +
-                         geom_point(color = "#505050",size = 1) +
+                         # geom_point(color = "#505050",size = 1) +
                          geom_vline(xintercept=as.numeric(as.Date("2020-08-13")), linetype="dashed", color = "black",alpha = .4) +
                          geom_vline(xintercept=as.numeric(as.Date("2021-10-01")), linetype="dashed", color = "black",alpha = .4) +
-                         geom_segment(aes(x = as.Date("2020-05-07"),xend = as.Date("2021-09-23"),y = 10000, yend = 10000),linetype="dashed",color = "black",alpha = 0.1,size = .5) +
+                         # geom_segment(aes(x = as.Date("2020-05-07"),xend = as.Date("2021-09-23"),y = 10000, yend = 10000),linetype="dashed",color = "black",alpha = 0.1,size = .5) +
                          scale_x_date(date_labels = "%b '%y") +
-                         scale_y_log10(labels = scales::comma_format()) +
+                         scale_y_log10(labels = scales::comma_format(),breaks = c(100,1000,10000,100000)) +
                          ggplot2::coord_cartesian(ylim = c(100,NA)) +
                          expand_limits(y = 0) +
                          labs(x = "",
