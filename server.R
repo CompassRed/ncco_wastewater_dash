@@ -83,6 +83,9 @@ shinyServer(function(input, output, session) {
                # upper = `Upper Limit (Copies/L)`
                ) %>% 
         janitor::clean_names() %>% 
+        mutate(log_levels = ifelse(log_levels == "NA",NA,log_levels),
+               non_normalized_log_levels = ifelse(non_normalized_log_levels == "NA",NA,non_normalized_log_levels)) %>% 
+        mutate_at(vars(log_levels,non_normalized_log_levels),as.numeric) %>% 
         mutate(date = as.Date(date))
         # mutate(upper = case_when(source == "Biobot" ~ log_levels,
         #                          T ~ upper),
@@ -157,21 +160,21 @@ shinyServer(function(input, output, session) {
         data %>% 
             mutate(date = lubridate::as_date(date)) %>% 
             mutate(label_both = paste0(station,": ",scales::comma(log_levels,1)),
-                   label_both_date = paste0("Date: ",format(date,"%m/%d/%y"), "<br>","Virus Levels (viral copies/L): ",scales::comma(log_levels,1),"<br>","Non-Normalized qPCR Copies/L: ",scales::comma(non_normalized_log_levels,1)),
+                   label_both_date = paste0("Date: ",format(date,"%m/%d/%y"), "<br>","Normalized Viral Copies/L: ",scales::comma(log_levels,1),"<br>","Viral Copies/L: ",scales::comma(non_normalized_log_levels,1)),
                    parent_label = ifelse(parent != "None",glue::glue("Subset of: {parent}<br>"),""),
                    label_full = glue::glue("<b>{station}</b><br>
                                            {parent_label}
                                            Date: {format(date,\"%m/%d/%y\")}<br>
-                                            <i>Virus Levels (normalized viral copies/L): {scales::comma(log_levels,1)}</i><br>
-                                            <i>Non-Normalized qPCR Copies/L: {scales::comma(non_normalized_log_levels,1)}</i>"),
+                                            <i>Normalized Viral Copies/L {scales::comma(log_levels,1)}</i><br>
+                                            <i>Viral Copies/L: {scales::comma(non_normalized_log_levels,1)}</i>"),
                    label_full = map(.x = label_full,
                                     .f =  htmltools::HTML),
                    label_sampling_site = glue::glue("<b>{station}</b><br>
                                                     {parent_label}
                                                     <u>Sampling Site Location</u><br>
                                                     Date: {format(date,\"%m/%d/%y\")}<br>
-                                                    <i>Virus Levels (viral copies/L): {scales::comma(log_levels,1)}</i><br>
-                                                    <i>Non-Normalized qPCR Copies/L: {scales::comma(non_normalized_log_levels,1)}</i>"),
+                                                    <i>Normalized Viral Copies/L: {scales::comma(log_levels,1)}</i><br>
+                                                    <iViral Copies/L: {scales::comma(non_normalized_log_levels,1)}</i>"),
                    label_sampling_site = map(.x = label_sampling_site,
                                     .f =  htmltools::HTML),
                    )
